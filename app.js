@@ -22,7 +22,7 @@ app.post('/users', async (req, res) => {
 
 app.listen(8080, async ()=>{
     console.log('Server is running on: http://localhost:8080')
-    await sequelize.sync({force: true})
+    await sequelize.authenticate()
     console.log("Database connected")
 })
 
