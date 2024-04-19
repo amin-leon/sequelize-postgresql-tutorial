@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "Leon16061998",
-    "database": "Mavericks_Dev_Db",
+    "username": "root",
+    "password": null,
+    "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",
