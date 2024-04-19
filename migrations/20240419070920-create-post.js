@@ -13,6 +13,10 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
+      userId: {
+        allowNull: false,
+        type: DataTypes.INTEGER
+      },
       body: {
         type: DataTypes.STRING,
         allowNull:false
