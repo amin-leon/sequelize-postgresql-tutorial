@@ -47,6 +47,52 @@ app.get('/users/:uuid', async (req, res) => {
     }
 })
 
+
+app.delete('/users/:uuid', async (req, res) => {
+    const { uuid } = req.params
+
+    try {
+        const user = await User.findOne({
+            where: {uuid}
+        })
+
+        if(user){
+            await User.destroy({
+                where:{
+                    uuid
+                }
+            })
+        }
+        return res.json({Message: "User is deleted!"})
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({error: "Something went wrong :)"})
+    }
+})
+
+app.put('/users/:uuid', async (req, res) => {
+    const { uuid } = req.params
+    const {name, role, email} = req.body;
+
+    try {
+        const user = await User.findOne({
+            where: {uuid}
+        })
+
+        if(user){
+            user.name = name
+            user.email = email;
+            user.role = role
+        }
+
+        await user.save()
+        return res.json({Message: "User is updated well"})
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({error: "Something went wrong :)"})
+    }
+})
+
 app.post('/posts', async (req, res) => {
     const {userUuid, body} = req.body;
 
