@@ -32,9 +32,24 @@ app.get('/users', async (req, res) => {
     }
 })
 
+app.get('/users/:uuid', async (req, res) => {
+    const { uuid } = req.params
+
+    try {
+        const user = await User.findOne({
+            where: {uuid}
+        })
+
+        return res.json(user)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({error})
+    }
+})
+
 app.listen(8080, async ()=>{
     console.log('Server is running on: http://localhost:8080')
     await sequelize.authenticate()
-    console.log("Database connected")
+    console.log("Database connected.....")
 })
 
